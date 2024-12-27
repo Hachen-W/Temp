@@ -7,6 +7,27 @@
 
 using std::shared_ptr;
 
+
+#define e_move 1    //Клеток
+
+#define l_hp 50
+#define l_reg_rate 10   //%
+#define l_castle_damage 20
+#define l_probability 5 //%
+
+#define h_hp 100
+#define h_reg_rate 7
+#define h_castle_damage 30
+#define h_walls_damage 25
+#define h_radius_action 2
+
+#define a_hp 75
+#define a_reg_rate 10 
+#define a_castle_damage 40
+#define a_walls_damage  40
+#define a_radius_action 2
+
+
 /**
         @brief Class Tower
 
@@ -83,6 +104,8 @@ class Lair: public Construction{
         ///The method of reinitializing enemies
         void reinit_enemies();
 };
+
+string unique_name(int dis);
 
 #endif
 
