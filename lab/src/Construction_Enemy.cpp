@@ -213,7 +213,7 @@ void Lair::spawn_enemy(){
     mt19937 eng(time(nullptr));
     int x_pos = current_position[0];
     int y_pos = current_position[1];
-    Enemy_Type type = static_cast<Enemy_Type>(eng() % 3 + 1); 
+    Enemy_Type type = static_cast<Enemy_Type>(eng() % 4 + 1); 
     Cell cell = (landscape -> cells).matrix[x_pos][y_pos];
     (landscape -> cells).matrix[x_pos][y_pos].ptr_entities.push_back(matrix_enemy.matrix[static_cast<int>(type)-1][level]); 
     enemies.push_back(matrix_enemy.matrix[static_cast<int>(type)-1][level]);
