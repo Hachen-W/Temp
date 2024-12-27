@@ -142,7 +142,7 @@ Lair::Lair(std::shared_ptr<Landscape> landscape_in){
     landscape = landscape_in;
     level = 0;
     count_step = 0;
-    matrix_enemy.matrix.resize(3);
+    matrix_enemy.matrix.resize(4);
     matrix_enemy.matrix[0].resize(30);
     matrix_enemy.matrix[1].resize(30);
     matrix_enemy.matrix[2].resize(30);
