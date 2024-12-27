@@ -486,3 +486,4 @@ Enemy::~Enemy(){};
 Heavy_Infantry::~Heavy_Infantry(){};
 Aviation::~Aviation(){};
 Light_Infantry::~Light_Infantry(){};
+Mega_Infantry::~Mega_Infantry(){};
