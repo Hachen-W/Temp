@@ -48,6 +48,9 @@ int main()
     sf::Texture texture_heavy_infantry;
     texture_heavy_infantry.loadFromFile("images/heavy_infantry.png");
 
+    sf::Texture texture_mega_infantry;
+    texture_heavy_infantry.loadFromFile("images/mega_infantry.png");
+
     sf::Texture texture_avia_land;
     texture_avia_land.loadFromFile("images/avia_land.png");
 
@@ -57,7 +60,7 @@ int main()
     sf::Texture texture_avia_moun;
     texture_avia_moun.loadFromFile("images/avia_moun.png");
 
-    vector<sf::Texture> textures = {texture_land, texture_moun, texture_river, texture_castle, texture_lair, texture_tower, texture_wall, texture_light_infantry, texture_heavy_infantry, texture_avia_land, texture_avia_moun, texture_avia_river};
+    vector<sf::Texture> textures = {texture_land, texture_moun, texture_river, texture_castle, texture_lair, texture_tower, texture_wall, texture_light_infantry, texture_heavy_infantry, texture_mega_infantry, texture_avia_land, texture_avia_moun, texture_avia_river};
 
     for (float i = 0; i < 10; i++){
         for (float j = 0; j < 10; j++){ 
@@ -231,18 +234,23 @@ void drawwing(Game& game, vector<sf::Texture> textures, sf::RenderWindow& window
                         sprite.setTexture(textures[8]);
                         sprite.setScale(0.165, 0.165);
                     }
+                    if (dynamic_pointer_cast<Mega_Infantry>(entity) != nullptr){
+                  //      std::cout << "Drawwing enemy..2" << std::endl;
+                        sprite.setTexture(textures[9]);
+                        sprite.setScale(0.165, 0.165);
+                    }
                     if (dynamic_pointer_cast<Aviation>(entity) != nullptr){
                   //      std::cout << "Drawwing enemy..3" << std::endl;
                         switch(static_cast<int>(cell.type))
                         {
                             case 1:
-                                sprite.setTexture(textures[9]);
-                                break;
-                            case 2:
                                 sprite.setTexture(textures[10]);
                                 break;
-                            case 3:
+                            case 2:
                                 sprite.setTexture(textures[11]);
+                                break;
+                            case 3:
+                                sprite.setTexture(textures[12]);
                                 break;
                         }
                         sprite.setScale(0.165, 0.165);
