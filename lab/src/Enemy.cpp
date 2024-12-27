@@ -234,13 +234,14 @@ void Mega_Infantry::to_do_step(){
                 for (auto entity : (landscape->cells)[current_position[0]][current_position[1]].ptr_entities){
                         if (dynamic_pointer_cast<Mega_Infantry>(entity) != nullptr) {
                                 if (dynamic_pointer_cast<Mega_Infantry>(entity) -> name == this -> name) {
+                                        (landscape->cells)[current_position[0]][current_position[1]].ptr_entities.erase((landscape->cells)[current_position[0]][current_position[1]].ptr_entities.begin()+index);
+
                                         for (int i = 0; i < 5; ++i) {
                                                 Light_Infantry l_enemy(unique_name(20), castle_position, current_position, landscape, l_hp, l_hp, l_reg_rate, e_move, l_castle_damage, l_probability);
                                                 shared_ptr<Lair> lair = dynamic_pointer_cast<Lair>(l_enemy.get_landscape()->cells[0][9].ptr_entities[0]);
                                                 lair->enemies.push_back(std::make_shared<Light_Infantry>(l_enemy));
                                                 (landscape -> cells).matrix[current_position[0]][current_position[1]].ptr_entities.push_back(std::make_shared<Light_Infantry>(l_enemy));
                                         }
-                                        (landscape->cells)[current_position[0]][current_position[1]].ptr_entities.erase((landscape->cells)[current_position[0]][current_position[1]].ptr_entities.begin()+index);
                                         break;
                                 }
                         }
