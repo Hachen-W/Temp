@@ -146,11 +146,13 @@ Lair::Lair(std::shared_ptr<Landscape> landscape_in){
     matrix_enemy.matrix[0].resize(30);
     matrix_enemy.matrix[1].resize(30);
     matrix_enemy.matrix[2].resize(30);
+    matrix_enemy.matrix[3].resize(30);
     for (int i = 0; i < 30; ++i){
         vector<shared_ptr<Enemy>> enemies = init_enemies(i);
         matrix_enemy.matrix[0][i] = enemies[0];
         matrix_enemy.matrix[1][i] = enemies[1];
         matrix_enemy.matrix[2][i] = enemies[2];
+        matrix_enemy.matrix[3][i] = enemies[3];
     }
     int pos_lair[2] = {9, 0};
     current_position[0] = pos_lair[0];
