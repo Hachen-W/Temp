@@ -222,6 +222,59 @@ void Heavy_Infantry::to_do_step(){
 void Heavy_Infantry::attack_wall(shared_ptr<Wall> wall){
         int wall_hp = wall -> get_current_hp();
         int max_wall_hp = wall -> get_max_hp();
+        if ((wall_hp - damage_walls) < 0) {
+                wall -> set_current_hp(0);
+        } else wall -> set_current_hp(wall_hp - damage_walls);
+        std::cout << "Heavy_Infantry attack wall with damage: " << damage_walls << " New wall hp is:" <<   wall -> get_current_hp() << std::endl;
+}
+
+void Mega_Infantry::to_do_step(){
+        if (hp == 0) {
+                int index = 0;
+                for (auto entity : (landscape->cells)[current_position[0]][current_position[1]].ptr_entities){
+                        if (dynamic_pointer_cast<Mega_Infantry>(entity) != nullptr) {
+                                if (dynamic_pointer_cast<Mega_Infantry>(entity) -> name == this -> name) {
+                                        (landscape->cells)[current_position[0]][current_position[1]].ptr_entities.erase((landscape->cells)[current_position[0]][current_position[1]].ptr_entities.begin()+index);
+                                        break;
+                                }
+                        }
+                        index += 1;
+                }
+                return;
+        }
+        try_to_reg_hp();
+
+        if (attack_castle(radius_of_action) == 0) {                             // Атакуем замок если можем
+                if (check_shortest_way() == 1) shortest_way = fsw_castle();     // Меняем кратчайший путь, если пользователь добавил стену или его нет
+                int index = 0;
+                for (auto entity : (landscape->cells)[current_position[0]][current_position[1]].ptr_entities){
+                        if (dynamic_pointer_cast<Heavy_Infantry>(entity) != nullptr){
+                                if (dynamic_pointer_cast<Heavy_Infantry>(entity) -> name == this -> name) {
+                                        (landscape->cells)[current_position[0]][current_position[1]].ptr_entities.erase((landscape->cells)[current_position[0]][current_position[1]].ptr_entities.begin()+index);
+                                        break;
+                                }
+                        }
+                        index += 1;
+                }
+                
+                set_current_position(shortest_way.back().x, shortest_way.back().y);
+                shortest_way.pop_back();
+                
+                (landscape->cells)[current_position[0]][current_position[1]].ptr_entities.push_back(std::make_shared<Heavy_Infantry>(*this));
+        }
+        if (auras.size() != 0){
+                for (auto aura : auras){
+                        if (dynamic_pointer_cast<Max_Hp>(aura) != nullptr){
+                                aura -> make_effect(landscape, std::make_unique<Enemy>(*this));
+                                std::cout << "Aura do" << std::endl;
+                        }
+                }
+        }
+}
+
+void Mega_Infantry::attack_wall(shared_ptr<Wall> wall){
+        int wall_hp = wall -> get_current_hp();
+        int max_wall_hp = wall -> get_max_hp();
         if ((wall_hp - damage_walls) < 0){
                 wall -> set_current_hp(0);
         }else wall -> set_current_hp(wall_hp - damage_walls);

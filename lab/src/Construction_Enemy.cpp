@@ -9,9 +9,6 @@ using std::dynamic_pointer_cast;
 using std::make_shared;
 
 void Tower::to_do_step(){
-
-    
-
     int size_x = (landscape -> get_size_play_field())[0];
     int size_y = (landscape -> get_size_play_field())[1];
     const int radius_action = characteristics.get_characteristic("radius_action").get_value();
@@ -127,13 +124,16 @@ vector<shared_ptr<Enemy>> Lair::init_enemies(int level){
         string name_l = unique_name(20);
         string name_h = unique_name(30);
         string name_a = unique_name(40);
+        string name_m = unique_name(50);
         //to do mega
         int castle_pos[2] = {0,9};
         int cur_pos[2] = {9,0};
         Light_Infantry l_enemy(name_l, castle_pos, cur_pos, landscape, l_hp + level*10, l_hp + level*10, l_reg_rate + level*2, e_move, l_castle_damage + level*5, l_probability);
         Heavy_Infantry h_enemy(name_h, castle_pos, cur_pos, landscape, h_hp + level*20, h_hp + level*20, h_reg_rate + level, e_move, h_castle_damage + level*7, h_walls_damage + level*2, h_radius_action + level / 5);
         Aviation a_enemy(name_a, castle_pos, cur_pos, landscape, a_hp + level*15, a_hp + level*15, a_reg_rate + level, e_move, a_castle_damage + level*5, a_walls_damage + level*4, a_radius_action + level / 5);
-        vector<shared_ptr<Enemy>> enemies = {make_shared<Light_Infantry>(l_enemy), make_shared<Heavy_Infantry>(h_enemy), make_shared<Aviation>(a_enemy)};
+        Mega_Infantry m_enemy(name_h, castle_pos, cur_pos, landscape, h_hp + level*20, h_hp + level*20, h_reg_rate + level, e_move, h_castle_damage + level*7, h_walls_damage + level*2, h_radius_action + level / 5);
+        vector<shared_ptr<Enemy>> enemies = {make_shared<Light_Infantry>(l_enemy), make_shared<Heavy_Infantry>(h_enemy), make_shared<Aviation>(a_enemy), make_shared<Mega_Infantry>(m_enemy)};
+
         return enemies;
 }
 
@@ -159,15 +159,17 @@ Lair::Lair(std::shared_ptr<Landscape> landscape_in){
 
 void Lair::reinit_enemies(){
     matrix_enemy.matrix.clear();
-    matrix_enemy.matrix.resize(3);
+    matrix_enemy.matrix.resize(4);
     matrix_enemy.matrix[0].resize(30);
     matrix_enemy.matrix[1].resize(30);
     matrix_enemy.matrix[2].resize(30);
+    matrix_enemy.matrix[3].resize(30);
     for (int i = 0; i < 30; ++i){
         vector<shared_ptr<Enemy>> enemies = init_enemies(i);
         matrix_enemy.matrix[0][i] = enemies[0];
         matrix_enemy.matrix[1][i] = enemies[1];
         matrix_enemy.matrix[2][i] = enemies[2];
+        matrix_enemy.matrix[3][i] = enemies[3];
     }
     int pos_lair[2] = {9, 0};
     current_position[0] = pos_lair[0];

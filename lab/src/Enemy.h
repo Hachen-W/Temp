@@ -119,6 +119,22 @@ class Heavy_Infantry: public Enemy{
         ~Heavy_Infantry();
 };
 
+class Mega_Infantry: public Enemy{
+        private:
+        ///Damage to walls
+        int damage_walls;
+        int radius_of_action;
+        public:
+        Mega_Infantry(){};
+        ///Heavy_Infantry constructor with several characteristics
+        Mega_Infantry(string name_in, int castle_position_in[2], int current_position_in[2], shared_ptr<Landscape>(landscape_in), int max_hp_in, int hp_in, int reg_rate, int move_speed_in, int damage_c_in, int damage_w_in, int radius_in) : Enemy(name_in, castle_position_in, current_position_in, landscape_in, max_hp_in, hp_in, reg_rate, move_speed_in, damage_c_in){damage_walls = damage_w_in; radius_of_action = radius_in;}; 
+        ///Redefining the to_do_step method
+        void to_do_step() override;
+        ///Wall attack method
+        void attack_wall(shared_ptr<Wall>) override;
+        ~Mega_Infantry();
+};
+
 /**
         @brief class Aviation
 

@@ -17,7 +17,7 @@ int main()
    // game.to_do_step();
    // 
     //std::cout<< game.landscape.cells.matrix[9][0].ptr_entities.size() << std::endl;
-    sf::RenderWindow window(sf::VideoMode(1000,1000), "SFML works!");
+    sf::RenderWindow window(sf::VideoMode(800,800), "SFML works!");
         
     sf::Sprite sprite;
         
