@@ -49,7 +49,7 @@ int main()
     texture_heavy_infantry.loadFromFile("images/heavy_infantry.png");
 
     sf::Texture texture_mega_infantry;
-    texture_heavy_infantry.loadFromFile("images/mega_infantry.png");
+    texture_mega_infantry.loadFromFile("images/mega_infantry.png");
 
     sf::Texture texture_avia_land;
     texture_avia_land.loadFromFile("images/avia_land.png");
