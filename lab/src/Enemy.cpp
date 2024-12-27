@@ -225,7 +225,7 @@ void Heavy_Infantry::attack_wall(shared_ptr<Wall> wall){
         if ((wall_hp - damage_walls) < 0) {
                 wall -> set_current_hp(0);
         } else wall -> set_current_hp(wall_hp - damage_walls);
-        std::cout << "Heavy_Infantry attack wall with damage: " << damage_walls << " New wall hp is:" <<   wall -> get_current_hp() << std::endl;
+        std::cout << "Mega_Infantry attack wall with damage: " << damage_walls << " New wall hp is:" <<   wall -> get_current_hp() << std::endl;
 }
 
 void Mega_Infantry::to_do_step(){
@@ -248,8 +248,8 @@ void Mega_Infantry::to_do_step(){
                 if (check_shortest_way() == 1) shortest_way = fsw_castle();     // Меняем кратчайший путь, если пользователь добавил стену или его нет
                 int index = 0;
                 for (auto entity : (landscape->cells)[current_position[0]][current_position[1]].ptr_entities){
-                        if (dynamic_pointer_cast<Heavy_Infantry>(entity) != nullptr){
-                                if (dynamic_pointer_cast<Heavy_Infantry>(entity) -> name == this -> name) {
+                        if (dynamic_pointer_cast<Mega_Infantry>(entity) != nullptr){
+                                if (dynamic_pointer_cast<Mega_Infantry>(entity) -> name == this -> name) {
                                         (landscape->cells)[current_position[0]][current_position[1]].ptr_entities.erase((landscape->cells)[current_position[0]][current_position[1]].ptr_entities.begin()+index);
                                         break;
                                 }
@@ -260,7 +260,7 @@ void Mega_Infantry::to_do_step(){
                 set_current_position(shortest_way.back().x, shortest_way.back().y);
                 shortest_way.pop_back();
                 
-                (landscape->cells)[current_position[0]][current_position[1]].ptr_entities.push_back(std::make_shared<Heavy_Infantry>(*this));
+                (landscape->cells)[current_position[0]][current_position[1]].ptr_entities.push_back(std::make_shared<Mega_Infantry>(*this));
         }
         if (auras.size() != 0){
                 for (auto aura : auras){
