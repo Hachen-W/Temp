@@ -230,12 +230,12 @@ void drawwing(Game& game, vector<sf::Texture> textures, sf::RenderWindow& window
                         sprite.setScale(0.165, 0.165);
                     }
                     if (dynamic_pointer_cast<Heavy_Infantry>(entity) != nullptr){
-                  //      std::cout << "Drawwing enemy..2" << std::endl;
+                        std::cout << "Drawwing enemy..2" << std::endl;
                         sprite.setTexture(textures[8]);
                         sprite.setScale(0.165, 0.165);
                     }
                     if (dynamic_pointer_cast<Mega_Infantry>(entity) != nullptr){
-                  //      std::cout << "Drawwing enemy..2" << std::endl;
+                        std::cout << "Drawwing enemy..mega" << std::endl;
                         sprite.setTexture(textures[9]);
                         sprite.setScale(0.165, 0.165);
                     }

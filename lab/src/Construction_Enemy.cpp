@@ -41,11 +41,11 @@ void Tower::attack_enemy(shared_ptr<Enemy> enemy){
     }
     int damage = characteristics.get_characteristic("damage").get_value();
     int enemy_hp = enemy -> get_hp();
-    if ( (enemy_hp - damage) <= 0){
+    if ( (enemy_hp - damage) <= 0) {
         enemy -> set_hp(0);
-    }else enemy -> set_hp(enemy_hp - damage);
+    } else enemy -> set_hp(enemy_hp - damage);
 
-    std::cout << "Tower attack enemy" /* enemy -> name*/<<" with damage: " << damage << " Enemy hp is: " << enemy -> get_hp() << std::endl;
+    std::cout << "Tower attack enemy" << " with damage: " << damage << " Enemy hp is: " << enemy -> get_hp() << std::endl;
 }
 
 void Tower::up_level(){
@@ -166,7 +166,7 @@ void Lair::reinit_enemies(){
     matrix_enemy.matrix[1].resize(30);
     matrix_enemy.matrix[2].resize(30);
     matrix_enemy.matrix[3].resize(30);
-    for (int i = 0; i < 30; ++i){
+    for (int i = 0; i < 30; ++i) {
         vector<shared_ptr<Enemy>> enemies = init_enemies(i);
         matrix_enemy.matrix[0][i] = enemies[0];
         matrix_enemy.matrix[1][i] = enemies[1];
